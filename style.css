@@ -1,0 +1,17 @@
+
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+h1{
+    text-align: center;
+    
+}
+
+div{
+    margin-top: 5rem;
+    text-align: center;
+}
+
+#introduce{
+        padding-right: 2rem;
+}

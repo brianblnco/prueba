@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="stylesheet"  href="style.css">
+
     <title>ADIVINA</title>
     
     
@@ -23,16 +24,17 @@
     
     
 </body>
-    <div class="resultParas">
-        <p class="lastResult"></p>
-        <p class="lowOrHi"></p>
+    <div >
+        <label for="attemptsField">Número de intentos: </label>
+        <label id="attemptsField" class="attemptsField"></label>
     </div>
 
-  <label for="attemptsField">Número de intentos: </label>
-  <label id="attemptsField" class="attemptsField"></label>
+  
  
   <div>
-    <label for="guessField">    Introduce un número: </label>
+    
+    
+    <label for="guessField" id="introduce">    Introduce un número         </label>
     <input type="text" id="guessField" class="guessField">
     <input type="submit" id="submitButton" value="Enviar respuesta" class="guessSubmit">
   </div>
@@ -47,7 +49,7 @@
   </div>
  
 <script>
-    let randomNumber = Math.floor(Math.random() * 10) + 1; //se le asigna un numero al azar
+    let randomNumber = Math.floor(Math.random() * 10) + 1; 
 
     
 
@@ -75,7 +77,7 @@
         img.hidden=true;
 
         if(entrada.value==""){
-            alert("Debes introducir un número para continuar.")
+            alert("Debes introducir un número para continuar.");
         }else{
             if(guessCount>3){
                 alert("El número máximo de intentos es 3. ");
@@ -94,6 +96,7 @@
                 if(userGuess == randomNumber){
                     
                     img.hidden=false;
+                    alert("¡Acertaste  en el " + guessCount + " intento!");
                     randomNumber=Math.floor(Math.random() * 10) + 1;
                     entrada.value = "";
                     intentos.innerHTML = "";
