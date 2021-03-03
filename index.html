@@ -34,15 +34,20 @@
   <div>
     <label for="guessField">    Introduce un número: </label>
     <input type="text" id="guessField" class="guessField">
-    <input type="submit" value="Enviar respuesta" class="guessSubmit">
+    <input type="submit" id="submitButton" value="Enviar respuesta" class="guessSubmit">
   </div>
  
   <div>
     <label id="introducidos" >Números introducidos: </label>
   </div>
+
+
+  <div>
+      <img id="imgAcertar" src="images/acierto.jpg" hidden="yes"> 
+  </div>
  
 <script>
-    let randomNumber = 0;//Math.floor(Math.random() * 100) + 1; //se le asigna un numero al azar
+    let randomNumber = Math.floor(Math.random() * 10) + 1; //se le asigna un numero al azar
 
     
 
@@ -52,39 +57,67 @@
 
     const guessSubmit = document.querySelector('.guessSubmit');
     const guessField = document.querySelector('.guessField');
+    var button = document.getElementById('submitButton');
 
     let guessCount = 1;
     let resetButton;
     
     function checkGuess() {
        
+
+        
         let userGuess = Number(guessField.value);
         console.log( "Numero introducido: " + userGuess + " Número aleatorio: " + randomNumber);
 
         var intentos=document.getElementById("attemptsField");
         var entrada = document.getElementById ("guessField");
+        var img = document.getElementById("imgAcertar");
+        img.hidden=true;
 
-        if (guessCount === 1) {
-            intentos.innerHTML = guessCount;
-         }else{
-             intentos.innerHTML = guessCount;
-         }
-         
+        if(entrada.value==""){
+            alert("Debes introducir un número para continuar.")
+        }else{
+            if(guessCount>3){
+                alert("El número máximo de intentos es 3. ");
+                    guessCount=1;
+                    intentos.innerHTML = "";
+                    entrada.value = "";
+                
 
-        if(userGuess == randomNumber){
-             alert("Acertaste")
-                entrada.value = "";
-                intentos.innerHTML = "";
-                guessCount = 1;
-             
-         }else{
-             alert("fallaste")
-             guessCount++;
-         }
+             }else{
+                if (guessCount === 1) {
+                    intentos.innerHTML = guessCount;
+                }else{
+                    intentos.innerHTML = guessCount;
+                }
 
-    }
+                if(userGuess == randomNumber){
+                    
+                    img.hidden=false;
+                    randomNumber=Math.floor(Math.random() * 10) + 1;
+                    entrada.value = "";
+                    intentos.innerHTML = "";
+                    guessCount = 1;
+                        
+                }else{
+                    alert("fallaste")
+                    entrada.value = "";
+                    guessCount++;
+                        }
+                   
 
-        guessSubmit.addEventListener('click', checkGuess);
+                }
+
+            
+                
+            }
+                
+
+        }      
+
+            guessSubmit.addEventListener('click', checkGuess);
+        
+       
 
 </script>
 </html>
